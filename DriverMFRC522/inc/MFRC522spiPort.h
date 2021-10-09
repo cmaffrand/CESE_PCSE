@@ -16,12 +16,6 @@
 
 /*=====[Definition macros of public constants]===============================*/
 
-#define PORT 6
-#define PIN 11
-#define MODE 0
-#define FUNC 0
-#define GPIO_OUTPUT 1
-
 /*=====[Public function-like macros]=========================================*/
 
 void spiInitPort(void);
@@ -29,5 +23,6 @@ void spiReadPort(uint8_t *buffer, uint32_t bufferSize, uint8_t *bufferAdd);
 void spiWritePort(uint8_t *buffer, uint32_t bufferSize);
 void chipSelectPort(bool chipSelect);
 void resetPort(bool resteSelect);
+void enableIRQPort(void);
 
 #endif /* __PORT_H__ */

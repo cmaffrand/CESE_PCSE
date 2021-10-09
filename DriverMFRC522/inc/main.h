@@ -10,5 +10,7 @@
 
 #include "MFRC522.h"
 #include "MFRC522spiPort.h"
+#include <stdio.h>
+#include <string.h>
 
 #endif /* __MAIN_H__ */
