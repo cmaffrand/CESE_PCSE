@@ -128,11 +128,13 @@ uint8_t readRegisterMFRC522(uint8_t address);
 void setBitsMFRC522(uint8_t address, uint8_t mask);
 void clearBitsMFRC522(uint8_t address, uint8_t mask);
 void resetMFRC522(void);
+void delayMFRC522(uint64_t duration_ms);
 uint8_t firmwareMFRC522(void);
 uint8_t digitalSelfTestPass(uint8_t *dump);
 uint8_t sendCommandTag(uint8_t cmd, uint8_t *data, uint32_t dlen, uint8_t *result, uint32_t *rlen);
 uint8_t requestTag(uint8_t mode, uint8_t *data);
 uint8_t antiCollision(uint8_t *serial);
 void clearAllIRQMFRC522(void);
+void enableAllIRQMFRC522(void);
 
 #endif /* __MFRC522_H__ */

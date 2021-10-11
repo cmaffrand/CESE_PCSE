@@ -16,8 +16,23 @@
 
 /*=====[Definition macros of public constants]===============================*/
 
+#ifndef DWT_CYCCNT
+    #define DWT_CYCCNT (*((volatile uint32_t *)0xE0001004))
+#endif
+#define DWT_CONTROL (*((volatile uint32_t *)0xE0001000))
+#define DWT_CYCCNTENA_BIT (1UL << 0)
+
+#define EnableCycleCounter() DWT_CONTROL |= DWT_CYCCNTENA_BIT
+#define GetCycleCounter() DWT_CYCCNT
+#define ResetCycleCounter() DWT_CYCCNT = 0
+#define DisableCycleCounter() DWT_CONTROL &= ~DWT_CYCCNTENA_BIT
+
 /*=====[Public function-like macros]=========================================*/
 
+void sysTickInit(void);
+void interruptInitPort(void);
+void chipSelectInitPort(void);
+void resetInit(void);
 void spiInitPort(void);
 void spiReadPort(uint8_t *buffer, uint32_t bufferSize, uint8_t *bufferAdd);
 void spiWritePort(uint8_t *buffer, uint32_t bufferSize);
