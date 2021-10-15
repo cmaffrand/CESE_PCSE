@@ -10,7 +10,6 @@
 
 #include "sapi.h" // <= Biblioteca sAPI
 #include "MFRC522.h"
-#include "MFRC522spiPort.h"
 #include <stdio.h>
 #include <string.h>
 
