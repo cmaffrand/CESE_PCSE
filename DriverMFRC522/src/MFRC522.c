@@ -9,10 +9,10 @@
 void initMFRC522(void)
 {
   // Inicializa todas funcionalidades necesarias para el MFRC522
-  sysTickInit();
+  sysTickInitPort();
   interruptInitPort();
   chipSelectInitPort();
-  resetInit();
+  resetInitPort();
   spiInitPort();
   resetPort(TRUE);
   chipSelectPort(FALSE);

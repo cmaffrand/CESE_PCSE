@@ -5,7 +5,7 @@
 
 #include "MFRC522spiPort.h"
 
-void sysTickInit(void)
+void sysTickInitPort(void)
 {
     //Contadores de ciclos
     uint32_t *H_DWT_DEMCR = (uint32_t *)0xE000EDFC;
@@ -45,7 +45,7 @@ void chipSelectInitPort(void)
     Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 3, 0);
 }
 
-void resetInit(void)
+void resetInitPort(void)
 {
     // Reset Pin Config | GPIO1 | Puerto 3 | Pin 3 |
     Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 3, 3);

@@ -29,10 +29,10 @@
 
 /*=====[Public function-like macros]=========================================*/
 
-void sysTickInit(void);
+void sysTickInitPort(void);
 void interruptInitPort(void);
 void chipSelectInitPort(void);
-void resetInit(void);
+void resetInitPort(void);
 void spiInitPort(void);
 void spiReadPort(uint8_t *buffer, uint32_t bufferSize, uint8_t *bufferAdd);
 void spiWritePort(uint8_t *buffer, uint32_t bufferSize);
