@@ -37,7 +37,7 @@ void beginMFRC522(void)
 
 void writeRegisterMFRC522(uint8_t address, uint8_t data)
 {
-  // Escitura de un registro en MFRC522
+  // Escritura de un registro en MFRC522
   uint8_t buffer[2];
   buffer[0] = (address << 1) & 0x7E;
   buffer[1] = data;
@@ -105,13 +105,14 @@ void clearAllIRQMFRC522(void)
 {
   // Limpia todas las banderas de interrupciones
   writeRegisterMFRC522(ComIrqReg, 0x80); //Clear interrupts
+  writeRegisterMFRC522(DivIrqReg, 0x80); //Clear interrupts
 }
 
 void enableAllIRQMFRC522(void)
 {
   // Habilita todas las interrupciones
   writeRegisterMFRC522(ComlEnReg, 0x7F); //Enable all interrupts
-  writeRegisterMFRC522(DivlEnReg, 0x14); //Enable all interrupts
+  writeRegisterMFRC522(DivlEnReg, 0x94); //Enable all interrupts
 }
 
 uint8_t digitalSelfTestPass(uint8_t *dump)

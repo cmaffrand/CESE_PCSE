@@ -30,7 +30,7 @@ void spiInitPort(void)
 void interruptInitPort(void)
 {
     // Interrupt Pin Config | GPIO2 | Puerto 3 | Pin 4 | Utilizando INT0 |
-    Chip_SCU_PinMux(3, 4, SCU_MODE_PULLUP | SCU_MODE_INBUFF_EN | SCU_MODE_ZIF_DIS, 0);
+    Chip_SCU_PinMux(3, 4, SCU_MODE_PULLDOWN | SCU_MODE_INBUFF_EN | SCU_MODE_ZIF_DIS, 0);
     Chip_GPIO_SetDir(LPC_GPIO_PORT, 3, (1 << 4), 0);
     Chip_SCU_GPIOIntPinSel(0, 3, 4);
     Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(0)); // Borra el pending IRQ INT0
@@ -100,10 +100,17 @@ void resetPort(bool resteSelect)
 void GPIO0_IRQHandler(void)
 {
     // Manejo de interrupciones
-    if (Chip_PININT_GetFallStates(LPC_GPIO_PIN_INT) & PININTCH0) // Interrupcion correcta
-    {
-        Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH0); //borra flag
-    }
+    int8_t buffer[2];
+    buffer[0] = (0x04 << 1) & 0x7E; // ComIrqReg
+    buffer[1] = 0x80;
+    chipSelectPort(TRUE);
+    spiWritePort(buffer, sizeof(buffer) / sizeof(buffer[0]));
+    chipSelectPort(FALSE);
+    buffer[0] = (0x05 << 1) & 0x7E; // DivIrqReg
+    chipSelectPort(TRUE);
+    spiWritePort(buffer, sizeof(buffer) / sizeof(buffer[0]));
+    chipSelectPort(FALSE);
+    Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH0); //borra flag}
 }
 
 void enableIRQPort(void)

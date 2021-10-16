@@ -50,9 +50,9 @@ int main(void)
    // Inicialización del MFRC522
    beginMFRC522();
    printf("MFRC522: Listo\r\n");
+   enableAllIRQMFRC522();
    clearAllIRQMFRC522();
    enableIRQPort();
-   enableAllIRQMFRC522();
    printf("Interrupciones Habilitadas\r\n");
 
    // ---------- REPETIR POR SIEMPRE --------------------------
